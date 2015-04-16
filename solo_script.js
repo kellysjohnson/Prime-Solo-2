@@ -5,7 +5,7 @@
                Then each operation conducted on an element of the array inside the function calculate STI had to include notation for accessing the sub array elements.
                This worked to output properly to the console.log.
                However, the error that I could not overcome in a reasonable time was the DOM output, which is of course, very messed up.
-               Plus, I could identify quickly the array was not referred to properly.  My route did not produce the correct solution, and took longer to accomplish.
+               Challenge plus: I could identify quickly that the array was not referred to properly.  Challenge minus: My route did not produce the correct solution, and took longer to accomplish.
    3. Line 47: Math.round() can be used to round the value to the nearest dollar as requested by problem statement.
    4. (pretty bonus: Line 46: Also use Math.round() to eliminate decimal places.) 
 
