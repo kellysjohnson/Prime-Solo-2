@@ -1,11 +1,7 @@
 // ! ! !
 /* Three Bugs 
    1. Line 69: Delete "- 1".  Without the modificaion, the math for the resulting decimal point value being sought.
-   2. Line 37: Add a for loop to build newArray from the elements of array.  This is to solve the problem that a function was passed an array and I was seeking to access the array sub elements.  
-               Then each operation conducted on an element of the array inside the function calculate STI had to include notation for accessing the sub array elements.
-               This worked to output properly to the console.log.
-               However, the error that I could not overcome in a reasonable time was the DOM output, which is of course, very messed up.
-               Plus, I could identify quickly the array was not referred to properly.  My route did not produce the correct solution, and took longer to accomplish.
+   2. Line 23: Add "[i]" to the array argument passing into the function calculateSTI, so that only the first cell of array will be passing into the function.
    3. Line 47: Math.round() can be used to round the value to the nearest dollar as requested by problem statement.
    4. (pretty bonus: Line 46: Also use Math.round() to eliminate decimal places.) 
 
@@ -25,39 +21,32 @@ position = document.getElementById('content');
 
 //Loop the array, extracting each array and writing information to the DOM
 //Note that the information is not 'clean'
-
-
 for(var i = 0; i < array.length; i++){
-	array[i] = calculateSTI(array);
+	array[i] = calculateSTI(array[i]);
  	newEl = document.createElement('li');
 	newText = document.createTextNode(array[i]);
 	newEl.appendChild(newText);
 	position.appendChild(newEl);
 }
 
-
 function calculateSTI(array){
   var newArray = [];
 
-for (var j=0; j<array.length; j++){
-  newArray[j] = array[j];
-  }
+  newArray[0] = array[0];
 
-  var employeeNumber = array[i][1];
-  var baseSalary = array[i][2];
-  var reviewScore = array[i][3];
+  var employeeNumber = array[1];
+  var baseSalary = array[2];
+  var reviewScore = array[3];
 
   var bonus = getBaseSTI(reviewScore) + getYearAdjustment(employeeNumber) - getIncomeAdjustment(baseSalary);
   if(bonus > 0.13){
     bonus = 0.13;
   }
 
-  newArray[i][1] = bonus;
-  newArray[i][2] = Math.round(baseSalary * (1.0 + bonus));
-  newArray[i][3] = Math.round(baseSalary * bonus);
-
-  console.log(newArray[i][0] + " " + newArray[i][1] + " " + newArray[i][2] + " " + newArray[i][3]);
-  
+  newArray[1] = bonus;
+  newArray[2] = Math.round(baseSalary * (1.0 + bonus));
+  newArray[3] = Math.round(baseSalary * bonus);
+  console.log(newArray[0] + " " + newArray[1] + " " + newArray[2] + " " + newArray[3]);
   return newArray;
 }
 
@@ -96,8 +85,6 @@ function getIncomeAdjustment(salary){
   salary = parseInt(salary);
   if(salary > 65000){
     incomeAdjustment = 0.01;
-  } else {
-    incomeAdjustment = 0.0;
   }
   return incomeAdjustment;
 }
